@@ -1,0 +1,58 @@
+{
+  "DefaultConfig": {
+    "Execution": {
+      "IsolationMode": "NoContainer",
+      "RunAs": {
+        "Gid": 0,
+        "Uid": 0
+      }
+    }
+  },
+  "Functions": [
+    {
+      "FunctionArn": "arn:aws:lambda:ap-southeast-1:194467213443:function:1-IoT-GetSensorData:1",
+      "FunctionConfiguration": {
+        "EncodingType": "json",
+        "Environment": {
+          "Execution": {
+            "IsolationMode": "NoContainer"
+          },
+          "Variables": { 
+            "tempLimit": "30",
+            "humidLimit": "50"
+          }
+        },
+        "ExecArgs": "string",
+        "Executable": "lambda_function.lambda_handler",
+        "Pinned": true,
+        "Timeout": 10
+      },
+    "Id": "sensorLambda"
+    },
+    {
+      "FunctionArn": "<lambda_function2_arn>:1",
+      "FunctionConfiguration": {
+        "EncodingType": "json",
+        "Environment": {
+          "Execution": {
+            "IsolationMode": "NoContainer"
+          },
+          "ResourceAccessPolicies": [
+            {
+              "Permission": "ro",
+              "ResourceId": "SNOW-Credentials"
+            }
+          ],
+          "Variables": { 
+            "snowUrl": "<service_now_api_url>"
+          }
+        },
+        "ExecArgs": "string",
+        "Executable": "lambda_function.lambda_handler",
+        "Pinned": false,
+        "Timeout": 10
+      },
+    "Id": "anomalyLambda"
+    }
+  ]
+}

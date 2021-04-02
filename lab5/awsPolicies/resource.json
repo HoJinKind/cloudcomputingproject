@@ -1,0 +1,13 @@
+{
+  "Resources": [
+      {
+        "Id": "SNOW-Credentials",
+        "Name": "SNOW-Credentials",
+        "ResourceDataContainer": {
+          "SecretsManagerSecretResourceData": {
+            "ARN": "arn:aws:secretsmanager:ap-southeast-1:194467213443:secret:greengrass-snow-creds-RvmGl9"
+          }
+        }
+      }
+    ]
+  }
