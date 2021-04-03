@@ -1,0 +1,1 @@
+aws greengrass create-group-version --group-id <gg_group_id> --core-definition-version-arn "<core_def_version_arn>" --function-definition-version-arn "<function_def_version_arn>" --resource-definition-version-arn "<resource_def_version_arn>" --subscription-definition-version-arn "<subscription_def_version_arn>"

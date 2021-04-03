@@ -1,0 +1,109 @@
+10203  aws secretsmanager create-secret --name "greengrass-snow-creds" --description "Credentials for ServiceNow API access" --secret-string '{"username":"&lt;username&gt;","password":"&lt;password&gt;"}'
+10204  hig default
+10205  aws configure set default.region us-east-1
+10206  aws secretsmanager create-secret --name "greengrass-snow-creds" --description "Credentials for ServiceNow API access" --secret-string '{"username":"&lt;username&gt;","password":"&lt;password&gt;"}'
+10207  cd ..
+10208  ls
+10209  mkdir lab5
+10210  cd lab
+10211  cd lab5
+10212  ls
+10213  vim assume.json
+10214  ls
+10215  aws iam create-role --role-name "IoTGGRole" --assume-role-policy-document assume.json
+10216  code .
+10217  aws iam create-role --role-name "IoTGGRole" --assume-role-policy-document assume.json
+10218  cd ...
+10219  ls
+10220  code .
+10221  aws iam put-role-policy --role-name IoTGGRole  --policy-name ExamplePolicy --policy-document assume.json
+10222  ls
+10223  cat assume.json
+10224  code .
+10225  aws iam put-role-policy --role-name IoTGGRole  --policy-name ExamplePolicy --policy-document assume.json
+10226  cd ....
+10227  ls
+10228  cd gitrep
+10229  cd astro
+10230  ls
+10231  cd terraform
+10232  ls
+10233  cd ..
+10234  cd terraform
+10235  cd common
+10236  ls
+10237  cd ...
+10238  ls
+10239  cd users-terraform
+10240  ls
+10241  code .
+10242  ls
+10243  cd ..
+10244  ls
+10245  cd cloudcomputingproject
+10246  mkdir lab5
+10247  ls
+10248  cd lab5
+10249  mkdir thingkeys
+10250  cd thingkeys
+10251  ls
+10252  aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile "iot-ge.cert.pem" --public-key-outfile "iot-ge.public.key" --private-key-outfile "iot-ge.private.key"
+10253  ls
+10254  git add .
+10255  git commit -m "lab 5"
+10256  git push
+10257  ls
+10258  sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
+10259  ls
+10260  aws iot describe-endpoint --endpoint-type iot:Data-ATS\n\n
+10261  code .
+10262  hig default
+10263  aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile "iot-ge.cert.pem" --public-key-outfile "iot-ge.public.key" --private-key-outfile "iot-ge.private.key"
+10264  ls
+10265  sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
+10266  aws iot describe-endpoint --endpoint-type iot:Data-ATS
+10267  aws iot create-thing --thing-name IoT-blog_Core
+10268  aws iot attach-thing-principal --thing-name "IoT-blog_Core" --principal "arn:aws:iot:ap-southeast-1:194467213443:cert/da7318af13cd6057e3cd5fd42c2de085fd5e8a329c899af87941f0a894bf165e"
+10269  aws iot attach-thing-principal --thing-name "IoT-blog_Core" --principal "arn:aws:iot:ap-southeast-1:194467213443:cert/da7318af13cd6057e3cd5fd42c2de085fd5e8a329c899af87941f0a894bf165e"
+10270  aws greengrass create-group --name IoT-blog-group
+10271  vim core-def.json
+10272  ls
+10273  cat core-def.json
+10274  code .
+10275  ls
+10276  aws greengrass create-core-definition --name "IoT-blog_Core" --initial-version
+10277  aws greengrass create-core-definition --name "IoT-blog_Core" --initial-version core-def.json
+10278  aws greengrass create-core-definition --name "IoT-blog_Core" --initial-version file://core-def.json
+10279  aws greengrass create-group-version --group-id "840cf919-361a-4c11-84d2-48fe27cc7842" --core-definition-version-arn "arn:aws:greengrass:ap-southeast-1:194467213443:/greengrass/definition/cores/e854832a-77df-49c4-aab5-7e49da24cb50/versions/7ed23aae-08ec-416a-8e0f-843f5a68c9ca"
+10280  aws greengrass associate-role-to-group --group-id "840cf919-361a-4c11-84d2-48fe27cc7842" --role-arn "arn:aws:iam::194467213443:role/IoTGGRole"
+10281  ls
+10282  cd ..
+10283  ls
+10284  mkdir awsPolicies
+10285  cd awsPolicies
+10286  ls
+10287  code .
+10288  aws iot create-policy --policy-name myGGPolicy --policy-document file://ggpolicy.json
+10289  aws iot attach-policy --target "arn:aws:iot:ap-southeast-1:194467213443:cert/da7318af13cd6057e3cd5fd42c2de085fd5e8a329c899af87941f0a894bf165e" --policy-name "myGGPolicy"
+10290  aws secretsmanager describe-secret --secret-id "greengrass-snow-creds"
+10291  code .
+10292  aws secretsmanager ls
+10293  aws secretsmanager list-secrets
+10294  aws greengrass create-resource-definition --name "MySNOWSecret" --initial-version file://resource.json
+10295  code .
+10296  aws lambda ls
+10297  aws lambda list-functions
+10298  aws lambda list-functions | grep sensor
+10299  aws lambda list-functions | grep getsensordata
+10300  cd ..
+10301  ls
+10302  code .
+10303  aws lambda list-functions | grep 1-IoT-GetSensorData
+10304  git add .
+10305  git commit -m "add some changes for lab 5"
+10306  git push
+10307  aws lambda list-functions | grep 2-IoT
+10308  ls
+10309  aws greengrass create-function-definition --name "IoT-blog-lambda" --initial-version file://lambda-def.json
+10310  aws greengrass create-subscription-definition --name "IoT-sensor-subs" --initial-version file://sub.json
+10311  cat logfile.log
