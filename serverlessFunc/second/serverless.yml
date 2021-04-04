@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: cloudcomputing
+service: cloudcomputing2
 
 provider:
   name: aws
@@ -27,8 +27,8 @@ pythonRequirements:
 
 
 functions:
-  mainfirst:
-    role: arn:aws:iam::194467213443:role/dynamoLambdaCC
+  second:
+    role: arn:aws:iam::194467213443:role/cclambdarole
     handler: main.lambda_handler
     timeout: 10
     

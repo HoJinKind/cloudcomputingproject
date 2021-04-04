@@ -1,0 +1,90 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <!--[ Recent Users ] start-->
+                        <div class="col-xl-8 col-md-6">
+                            <div class="card Recent-Users">
+                                <div class="card-header">
+                                    <h5>All Devices</h5>
+                                </div>
+                                <div class="card-block px-0 py-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                {%for index,val in data%}
+                                                    {% if val['id'] == '1' %}
+                                                    <tr class="unread">
+                                                        <td><img class="rounded-circle" style="width:40px;" src="/static/assets/images/user/avatar-1.jpg" alt="activity-user"></td>
+                                                        <td>
+                                                            <h6 class="mb-1">Device id: {{val['id']}}</h6>
+                                                            <p class="m-0">Name: Alice</p>
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="text-muted"><i class="fas fa-circle text-c-{{color[val['status']]}} f-10 m-r-15"></i>Status: {{val['status']}}</h6>
+                                                        </td>
+
+                                                        {% if val['status'] == 'fall' %}
+                                                            <td><button name='1' onclick="myFunction()"  class="label theme-bg2 text-white f-12">send SMS!</button>
+
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% else %}
+                                                    <tr class="unread">
+                                                        <td><img class="rounded-circle" style="width:40px;" src="/static/assets/images/user/avatar-1.jpg" alt="activity-user"></td>
+                                                        <td>
+                                                            <h6 class="mb-1">Device id: {{val['id']}}</h6>
+                                                            <p class="m-0">Name: N/a</p>
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="text-muted"><i class="fas fa-circle text-grey f-10 m-r-15"></i>Status: {{val['status']}}</h6>
+                                                        </td>
+                                                    </tr>
+                                                    {% endif %}
+                                                {%endfor%}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--[ Recent Users ] end--> 
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function myFunction() {
+            fetch("https://dataadroit.com/sendsms", {
+            method: "POST", 
+            body: JSON.stringify({
+                "PhoneNumber": "6596962717", 
+                "From": "FallAlert",
+                "Content" : "Alert! Device 1 has detected a fall."})
+         
+            })
+            alert('message sent');
+        }
+            </script>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

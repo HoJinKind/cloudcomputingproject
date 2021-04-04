@@ -25,32 +25,17 @@ resource "aws_iot_policy" "device1policy" {
     {
       "Effect": "Allow",
       "Action": "iot:Subscribe",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topicfilter/esp32/sub/data"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iot:Subscribe",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topicfilter/esp32/sub/url"
+      "*"
     },
     {
       "Effect": "Allow",
       "Action": "iot:Receive",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topic/esp32/sub/url"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iot:Receive",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topic/esp32/sub/data"
+      "*"
     },
     {
       "Effect": "Allow",
       "Action": "iot:Publish",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topic/esp32/pub/data"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iot:Publish",
-      "Resource": "arn:aws:iot:ap-southeast-1:194467213443:topic/esp32/pub/url"
+      "*"
     }
   ]
 }

@@ -27,8 +27,8 @@ pythonRequirements:
 
 
 functions:
-  mainfirst:
-    role: arn:aws:iam::194467213443:role/dynamoLambdaCC
+  third:
+    role: arn:aws:iam::194467213443:role/cclambdarole
     handler: main.lambda_handler
     timeout: 10
     
